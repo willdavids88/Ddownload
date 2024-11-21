@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DDOWNLOAD Conteúdos Exclusivos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* =================== Estilo geral da página =================== */
+
+        /* Define o fundo com gradiente futurista */
+        body {
+            font-family: 'Courier New', Courier, monospace; /* Fonte no estilo retrô */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #020024, #090979, #00d4ff); /* Gradiente de fundo */
+            color: #fff; /* Texto branco */
+            overflow: hidden; /* Remove barras de rolagem extras */
+            cursor: url('https://cdn-icons-png.flaticon.com/512/2107/2107957.png'), auto; /* Cursor futurista */
+        }
+
+        /* =================== Menu superior =================== */
+
+        .menu {
+            background: url('caminho-da-imagem.jpg') no-repeat center center; /* Imagem de fundo */
+            background-size: cover; /* Ajusta o tamanho do fundo para cobrir toda a área */
+            text-align: center;
+            padding: 50px 20px; /* Espaçamento interno */
+            box-shadow: 0 0 20px #ff00ff; /* Brilho */
+            position: relative;
+            color: #fff; /* Texto branco */
+        }
+
+        .menu a {
+            color: #00ffff; /* Cor azul neon */
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 24px; /* Tamanho maior para destaque */
+            font-weight: bold;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .menu a:hover {
+            color: #ff00ff; /* Cor muda para roxo neon */
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; /* Brilho no texto */
+        }
+
+        /* =================== Corpo principal =================== */
+
+        .main-content {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .left, .center, .highlights {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #00ff00;
+            flex: 1;
+        }
+
+        .center {
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff;
+            transform: scale(1.05);
+        }
+
+        /* =================== Destaques (carrossel) =================== */
+
+        .highlights {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #00ffff;
+            text-align: center;
+        }
+
+        .highlights img {
+            width: 150px; /* Tamanho pequeno para capas */
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .carousel-controls {
+            margin-top: 10px;
+        }
+
+        .carousel-controls button {
+            background: #00ffff;
+            border: none;
+            color: #000;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .carousel-controls button:hover {
+            background: #ff00ff;
+        }
+
+        /* =================== Rodapé =================== */
+
+        .footer {
+            background: linear-gradient(90deg, #000, #39006b);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 0 20px #ff00ff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu superior -->
+    <div class="menu">
+        <a href="#">Filmes</a>
+        <a href="#">Séries</a>
+        <a href="#">Jogos</a>
+        <a href="#">Softwares</a>
+    </div>
+
+    <!-- Corpo principal -->
+    <div class="main-content">
+        <div class="left">
+            <h2>Divisão Esquerda</h2>
+            <p>Conteúdo relacionado à esquerda da página.</p>
+        </div>
+        <div class="center">
+            <h2>Divisão Central</h2>
+            <p>Conteúdo principal da página.</p>
+        </div>
+
+        <!-- Carrossel de Destaques -->
+        <div class="highlights">
+            <h2>Produtos em Destaque</h2>
+            <!-- Link para download do arquivo torrent -->
+            <a id="download-link" href="deadpoolwolverine.torrent" download="deadpoolwolverine.torrent">
+                <img id="highlight-image" src="deadpoolwolverine.jpg" alt="deadpoolwolverine">
+            </a>
+            <div class="carousel-controls">
+                <button onclick="prevHighlight()">Anterior</button>
+                <button onclick="nextHighlight()">Próximo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        <p>&copy; Qualidade Ddownload.</p>
+    </div>
+
+    <!-- Script para controle do carrossel -->
+    <script>
+        // Lista de imagens e seus respectivos arquivos torrent
+        const items = [
+            { src: "deadpoolwolverine.jpg", torrent: "deadpoolwolverine.torrent" },
+            { src: "alitacapa.jpg", torrent: "alitacapa.torrent" },
+            { src: "todotempoquetemoscapa.jpg", torrent: "todotempoquetemoscapa.torrent" }
+        ];
+        let currentIndex = 0;
+
+        const highlightImage = document.getElementById('highlight-image');
+        const downloadLink = document.getElementById('download-link');
+
+        // Atualiza a imagem e o link de download
+        function updateHighlight() {
+            const { src, torrent } = items[currentIndex];
+            highlightImage.src = src;
+            downloadLink.href = torrent;
+            downloadLink.download = torrent;
+        }
+
+        // Mostra a imagem anterior
+        function prevHighlight() {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            updateHighlight();
+        }
+
+        // Mostra a próxima imagem
+        function nextHighlight() {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateHighlight();
+        }
+    </script>
+</body>
+</html>
